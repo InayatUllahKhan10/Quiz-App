@@ -1,0 +1,111 @@
+/* Timer styling */
+#timer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f8ede3;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #5a3e36;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+/* Score box styling */
+#score-box {
+    position: absolute;
+    top: 100px; /* Increased top space to prevent overlap with the title */
+    right: 20px;
+    background: #fdebd0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #6b4226;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+    z-index: 10; /* Ensures it's on top */
+}
+
+/* Initially hide the score box */
+.hidden {
+    display: none;
+}
+
+/* General container styling */
+.container {
+    position: relative;
+    width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f4e1d2;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border: 2px solid #a57b61;
+}
+
+/* Heading styling */
+.main-heading {
+    text-align: center;
+    color: #5a3e36;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+}
+
+/* Paragraph styling */
+.para {
+    color: #7b5e57;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Radio button styling */
+.radio-class {
+    margin-right: 10px;
+}
+
+/* Span (answer) styling */
+.span-class {
+    color: #5a3e36;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+/* Submit button styling */
+.submit-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 20px;
+    background-color: #b78b6e;
+    color: white;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+    background-color: #8d6e4e;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #timer, #score-box {
+        font-size: 16px;
+    }
+}

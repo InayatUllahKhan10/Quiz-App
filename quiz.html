@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Quiz</title>
+    <link rel="stylesheet" href="QUIZ.CSS" />
+  </head>
+  <body>
+
+    <!-- Timer box in the top-right -->
+    <div class="container">
+      <div id="timer">Time left: <span id="time">60</span> seconds</div>
+      <div id="score-box" class="hidden">Your Score: <span id="score">0</span></div>
+    </div>
+    
+    <!-- <form class="container">
+      <!-- Your quiz questions and form will be dynamically inserted here -->
+    </form>
+
+    <script>
+
+        // Timer countdown logic
+        let timeLeft = 60; // time in seconds
+        const timerElement = document.getElementById('time');
+
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                alert("Time is up!");
+
+                document.querySelectorAll('#quiz input').forEach(input => input.disabled = true);
+                showScore();
+                return;
+            }
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+
+        // Getting the address of div element defined in HTML file
+        let formAddr = document.querySelector(".container");
+
+        // Creating a new heading tag
+        let heading = document.createElement("h1");
+        formAddr.appendChild(heading);
+        heading.textContent = "Basic Math Quiz";
+        heading.classList = "main-heading";
+
+        // Create random questions based on luck
+        let correctAnswers = 0;
+        let totalQuestions = Math.ceil(Math.random() * 10); // Random number of questions
+        for (let i = 1; i <= totalQuestions; i++) {
+            // Choosing a random operator
+            let arrOperator = ["+", "-", "*", "/", "%", "^"];
+            let randomOperator = arrOperator[Math.floor(Math.random() * arrOperator.length)];
+
+            // Choosing two random numbers
+            let num1 = Math.round(Math.random() * 100);
+            let num2 = Math.round(Math.random() * 100);
+
+            // Creating new paragraph tag
+            let paragraph = document.createElement("p");
+            formAddr.appendChild(paragraph);
+            paragraph.textContent = `${i}. What is ${num1} ${randomOperator} ${num2}?`;
+            paragraph.classList = "para";
+
+            // Adding options to choose the correct one
+            let correctAnswer = answer(randomOperator, num1, num2);
+            for (let j = 0; j < 4; j++) {
+                let radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `q${i}`;
+                radio.value = (j == 3) ? correctAnswer : Math.round(Math.random() * correctAnswer * 10 * 100) / 100;
+                radio.classList = "radio-class";
+                formAddr.appendChild(radio);
+
+                let span = document.createElement("span");
+                formAddr.appendChild(span);
+                span.textContent = radio.value;
+                span.classList = "span-class";
+
+                formAddr.appendChild(document.createElement("br"));
+
+                // Event listener to check if the selected answer is correct
+                radio.addEventListener('click', function() {
+                    if (parseFloat(radio.value) === correctAnswer) {
+                        correctAnswers++;
+                    }
+                });
+            }
+        }
+
+        // Creating Submit Button
+        let submitBtn = document.createElement("button");
+        formAddr.appendChild(submitBtn);
+        submitBtn.textContent = "Submit Quiz";
+        submitBtn.classList = "submit-btn";
+
+        // Submit button event listener
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            clearInterval(timerInterval); // Stop the timer
+            showScore(); // Show the score
+        });
+
+        // Function to calculate and display the score
+        function showScore() {
+            let scoreBox = document.getElementById('score-box');
+            let scoreElement = document.getElementById('score');
+            scoreElement.textContent = `${correctAnswers}/${totalQuestions}`;
+            scoreBox.classList.remove('hidden');
+        }
+
+        // Logic for finding the answer of the questions
+        function answer(randomOperator, num1, num2) {
+            switch (randomOperator) {
+                case "+":
+                    return num1 + num2;
+                case "-":
+                    return num1 - num2;
+                case "*":
+                    return num1 * num2;
+                case "/":
+                    return num1 / num2;
+                case "%":
+                    return num1 % num2;
+                case "^":
+                    return Math.pow(num1, num2);
+                default:
+                    return 0;
+            }
+        }
+    </script>
+  </body>
+</html>
